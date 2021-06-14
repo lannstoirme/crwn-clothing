@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './sign-in.component.scss';
+import FormInput from '../form-input.component/form-input.component.jsx';
 
 //class component due to needing to hold state of what the user is typing rather than 
 //simply returning a div
@@ -35,12 +36,11 @@ class SignIn extends React.Component{
                 <span>Sign In With Your Email and Password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <input name="email" type="email" onChange={this.handleChange} value={this.state.email} required />
-                    <label>Email</label>
-                    <input name="password" type="password" value={this.state.password} onChange={this.handleChange} required/>
-                    <label>Email</label>
+                    <FormInput name="email" type="email" handleChange={this.handleChange} value={this.state.email} label="email" required />
+                    <FormInput name="password" type="password" value={this.state.password} handleChange={this.handleChange} label="password" required/>
+                
 
-                    <input type="submit" value="Submit Form"/>
+                    <FormInput type="submit" value="Submit Form"/>
                     
                 </form>
             </div>
