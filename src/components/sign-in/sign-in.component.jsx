@@ -2,6 +2,9 @@ import React from 'react';
 
 import './sign-in.component.scss';
 import FormInput from '../form-input.component/form-input.component.jsx';
+import CustomButton from '../custom-button/custom-button.component.jsx';
+
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 //class component due to needing to hold state of what the user is typing rather than 
 //simply returning a div
@@ -40,8 +43,8 @@ class SignIn extends React.Component{
                     <FormInput name="password" type="password" value={this.state.password} handleChange={this.handleChange} label="password" required/>
                 
 
-                    <FormInput type="submit" value="Submit Form"/>
-                    
+                    <CustomButton type="submit">Sign In</CustomButton>
+                    <CustomButton onClick={signInWithGoogle}>{''}Sign In With Google{''}</CustomButton>
                 </form>
             </div>
         )
