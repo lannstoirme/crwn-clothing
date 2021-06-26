@@ -4,7 +4,7 @@ import './sign-in.component.scss';
 import FormInput from '../form-input.component/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component.jsx';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 //class component due to needing to hold state of what the user is typing rather than 
 //simply returning a div
@@ -21,11 +21,20 @@ class SignIn extends React.Component{
       
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
-        this.setState({ email: '', password: ''})
-    }
+        const { email, password } = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({ email: '', password: ''});
+        } catch (error) {
+            console.log(error);
+        }
+
+        
+    };
 
     handleChange = event => {
         const { value, name} = event.target;
